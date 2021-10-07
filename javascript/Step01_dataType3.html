@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_dataType3.html</title>
+</head>
+<body>
+    <h1>javascript 데이터 type</h1>
+    <script>
+        //회원 한명의 정보라고 가정하자
+        //각각의 변수에 대입하면 3개의 변수가 필요 하지만...
+        let num=1;
+        let name="김구라";
+        let isMan=true;
+
+        //다른 data type 을 활용하면 1개의 변수명으로 회원 한명의 정보를 
+        //관리 할수 있다.
+        let mem1={num:1, name:"김구라", isMan:true};
+        let mem2={num:1, name:"김구라", isMan:true};
+        let mem3={num:num, name:name, isMan:isMan};
+
+        // a 는 object type
+        let a=mem1; // mem1 에 있는 object type 값을 a 에 복사 
+        // b 는 number type
+        let b=mem1.num;
+        // c 는 string type
+        let c=mem1.name;
+        // d 는 boolean type
+        let d=mem1.isMan;
+
+        // object 에 저장된 값을 수정해 보기
+        mem2.num=999;
+        mem2.name="이정호";
+
+        //빈 object 를 만들고 
+        let mem4={};
+        //나중에 방을 추가 할수 있을까요?
+        mem4.num=2;
+        mem4.name="해골";
+        //나중에 방을 삭제 할수 있을까요?
+        delete mem4.name;  // delete 예약어를 이용해서 삭제할수 있다.
+        
+        let mem5={num:11, name:"김구라111"};
+
+        mem5.isMan = mem1.isMan;
+        mem1.isMan = false;
+        mem5.num = 3
+    </script>
+</body>
+</html>

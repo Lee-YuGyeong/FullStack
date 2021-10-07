@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_form2.html</title>
+    <style>
+        #comment{
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>회원 가입 폼 입니다.</h1>
+    <form action="signup.jsp">
+        <label for="email">이메일</label>
+        <input type="text" id="email" name="email"><br>
+        <!-- 
+            fieldset , legend 요소가 왜 필요한지와
+            label 텍스트를 제공하는 새로운 방법을 익히세요
+            input type="radio" 에서 name 속성의 값이 같으면 
+            같은 그룹으로 묶인다.
+        -->
+        <fieldset>
+            <legend>성별 정보 선택</legend>
+            <label>
+                <!-- value="선택 했을때 서버에 전송할 문자열" --->
+                <input type="radio" name="gender" value="man" checked> 남자
+            </label>
+            <label>
+                <input type="radio" name="gender" value="woman"> 여자
+            </label>
+        </fieldset>
+        <!-- 
+            input type="checkbox" 는 name 속성의 값이 모두 같아도 
+            그룹으로 묶이지 않는다.
+        -->
+        <fieldset>
+            <legend>취미 정보 선택</legend>
+            <label>
+                <input type="checkbox" name="hobby" value="soccer"> 축구
+            </label>
+            <label>
+                <input type="checkbox" name="hobby" value="baking"> 베이킹
+            </label>
+            <label>
+                <input type="checkbox" name="hobby" value="piano"> 피아노
+            </label>
+            <label>
+                <input type="checkbox" name="hobby" value="etc"> 기타
+            </label>
+        </fieldset>
+        <label for="job">직업선택</label>
+        <select name="job" id="job">
+            <option value="">선택</option>
+            <option value="programmer">프로그래머</option>
+            <option value="doctor">의사</option>
+            <option value="pianist">피아니스트</option>
+            <option value="etc">기타</option>
+        </select>
+        <br>
+        <label for="lunch">점심 선택</label>
+        <!-- option 에 value 가 없으면 innerText 가 전송된다. -->
+        <select name="lunch" id="lunch">
+            <optgroup label="분식">
+                <option>라면</option>
+                <option>쫄면</option>
+                <option>김밥</option>
+            </optgroup>
+            <optgroup label="중식">
+                <option>자장면</option>
+                <option>짬뽕</option>
+                <option>군만두</option>
+            </optgroup>
+        </select>
+        <br>
+        <label for="myFile">첨부파일</label>
+        <input type="file" id="myFile" name="myFile">
+        <br>
+        <label for="comment">하고 싶은말</label>
+        <br>
+        <textarea name="comment" id="comment"></textarea>
+        <br>
+        <button type="submit">가입</button>
+    </form>
+</body>
+</html>
