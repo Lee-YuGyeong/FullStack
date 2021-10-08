@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step02_example.html</title>
+</head>
+<body>
+    <input type="text" id="inputMsg" placeholder="메세지 입력...">
+    <button id="sendBtn">전송</button>
+    <p id="result"></p>
+    <script>
+        /*
+            위의 input 요소에 문자열을 입력하고
+            전송 버튼을 누르면
+            input요소에 입력한 문자열이
+            p요소의 innerText로 출력이 되도록 프로그래밍 해보세요.
+        */
+
+        document.querySelector("#sendBtn").addEventListener("click",function(){
+            let msg = document.querySelector("#inputMsg").value;
+            document.querySelector("#result").innerText = msg;
+        });
+
+    </script>
+</body>
+</html>

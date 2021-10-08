@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step02_event.html</title>
+</head>
+<body>
+    <h1>이벤트 처리</h1>
+    <button onclick="clicked()">눌러보셈</button>
+    <button id="one">눌러보셈2</button>
+    <script>
+
+        let clicked = function(){
+            console.log("버튼을 눌렀네요?");
+        };
+        /*
+            .addEventListener(이벤트명(string), callback 함수(function))
+        */
+        //id가 one인 요소에 "click" 이벤트가 일어나면 자동으로 호출되는 함수 등록
+        document.querySelector("#one").addEventListener("click",function(){
+            console.log("두번째 버튼을 눌렀네요?");
+        });
+    </script>
+</body>
+</html>
