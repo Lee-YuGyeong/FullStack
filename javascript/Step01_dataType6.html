@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_dataType6.html</title>
+</head>
+<body>
+    <button onclick="car1.drive()"></button>
+    <script>
+        // number type 데이터를 만들어서 num1이라는 변수에 대입
+        let num1 = 10;
+        // string type 데이터를 만들어서 str이라는 변수에 대입
+        let str = "abcd";
+        // object type 데이터를 만들어서 obj라는 변수에 대입
+        let obj = {}
+        // array type 데이터를 만들어서 arr 이라는 변수에 대입
+        let arr = [];
+        // function type 데이터를 만들어서 f1 이라는 변수에 대입
+        let f1 = function(){
+            console.log("하나");
+            console.log("두울");
+            console.log("세엣");
+        };
+
+        //f1에 들어 있는 참조값을 f2에 대입(복사)하기
+        let f2 = f1;
+
+        let car1 = {
+            name:"테슬라",
+            drive:function(){
+                console.log("달려요!");
+            }
+        };
+
+        car1.drive()
+        
+    </script>
+</body>
+</html>

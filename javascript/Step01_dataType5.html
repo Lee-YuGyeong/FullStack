@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_dataType5.html</title>
+</head>
+<body>
+    <script>
+        //배열에는 주로 한가지 type의 데이터만 담는게 일반적이다.
+
+        //배열에 number type 담기
+        let nums = [10,20,30,40,50];
+        //배열에 string type 담기
+        let names = ["김구라","해골","원숭이"];
+        //배열에 beelean type 담기
+        let data = [true,false,false,true,true];
+
+        //배열에 object type 담기
+        let members = [
+            {num:1,name:"김구라",isMan:true},
+            {num:2,name:"해골",isMan:false},
+            {num:3,name:"원숭이",isMan:true}
+        ];
+
+        let a = members; //array
+        let b = members[0]; // object
+        let c = members[0].num; // number
+        let d = members[0].name; // string
+        let e = members[0].isMan; // boolean
+    </script>
+</body>
+</html>

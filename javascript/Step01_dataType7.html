@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_dataType7.html</title>
+</head>
+<body>
+    <script>
+        //function type
+
+        // undefined 를 리턴해주는 함수 
+        let f1=function(){
+            //일괄 실행할 javascript 를 { } 안에 작성해서 준비할수 있다.
+            console.log("하나");
+            console.log("두울");
+            console.log("세엣");
+        };
+        // number type 을 리턴해주는 함수 
+        let f2=function(){
+            console.log("f2() 호출됨!");
+            return 999; //return (되돌려준다, 함수를 끝낸다, 함수를 호출한 곳으로 돌아간다.)
+        };
+        // string type 을 리턴해주는 함수 
+        let f3=function(){
+            console.log("f3() 호출됨");
+            return "hello~";
+        };
+        
+        // object type 을 리턴해주는 함수 
+        let f4=function(){
+            console.log("f4() 호출됨");
+            let obj={num:1, name:"kim"};
+            return obj;
+        };
+        // array type 을 리턴해 주는 함수
+        let f5=function(){
+            console.log("f5() 호출됨");
+            return [10, 20, 30];
+        };
+
+    </script>
+
+</body>
+</html>
