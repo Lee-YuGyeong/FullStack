@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_loop3.html</title>
+</head>
+<body>
+    <button id="changebtn">바꾸기</button>
+    <p id="one">마우스를 올리셈</p>
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+    <div>div6</div>
+    <div>div7</div>
+    <div>div8</div>
+    <div>div9</div>
+    <div>div10</div>
+    
+    <script>
+        //바꾸기 버튼을 누르면 모든 div의 innerText를 "김구라"로 바꿔보세요.
+        document.querySelector("#changebtn").addEventListener("click",function(){
+            for(let i=0;i<10;i++){
+                document.querySelectorAll("div")[i].innerText = "김구라";
+            }
+        });
+        
+        //위의 p요소에 마우스를 올리면 모든 div의 배경색을 노란색으로 바꿔보세요.
+        document.querySelector("#one").addEventListener("mouseover",function(){
+            for(let i=0;i<10;i++){
+                document.querySelectorAll("div")[i].style.backgroundColor = "yellow";
+            }
+        });
+    </script>
+</body>
+</html>

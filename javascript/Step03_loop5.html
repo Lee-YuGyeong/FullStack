@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_loop5.html</title>
+</head>
+<body>
+    <button id="printBtn">출력하기</button>
+    <script>
+        let names = ["김구라","해골","원숭이","주뎅이","덩어리"];
+
+        //출력하기 버튼을 눌렀을때 names 배열에 저장된 모든 문자열을 순서대로 콘솔창에 출력하기
+
+        document.querySelector("#printBtn").addEventListener("click",function(){
+            for (let i=0; i<names.length;i++){
+                console.log(names[i]);
+            }
+        });
+    </script>
+</body>
+</html>
