@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step02_event2.html</title>
+    <style>
+        .box{
+            width: 500px;
+            height: 500px;
+            border-width:1px;
+            border-style:solid;
+            border-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="myDiv">div1</div>
+    <script>
+        document.querySelector("#myDiv").addEventListener("mousedown",function(){
+            document.querySelector("#myDiv").style.backgroundColor = "yellow";
+        });
+
+        // id 가 myDiv인 요소에 "mouseup"이벤트가 일어나면 배경색을 흰색으로 바꿔 보세요.
+        document.querySelector("#myDiv").addEventListener("mouseup",function(){
+            document.querySelector("#myDiv").style.backgroundColor = "white";
+        });
+
+        document.querySelector("#myDiv").addEventListener("mousemove",function(event){
+            console.log("mousemove!");
+            console.log(event)
+            let x = event.offsetX;
+            let y = event.offsetY;
+            /*
+                이벤트가 일어난 좌표를
+                "x 좌표:100 y좌표:200" 형식의 문자열로 만들어서
+                위의 div의 innerText로 출력해보세요
+            */
+           document.querySelector("#myDiv").innerText = "x 좌표:"+x+"y 좌표:"+y;
+        });
+    </script>
+</body>
+</html>
