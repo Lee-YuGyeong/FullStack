@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step04_if4.html</title>
+</head>
+<body>
+    <input type="text" id="jumsu" placeholder="(100 ~ 0)점수 입력...">
+    <button id="checkBtn">성적 확인</button>
+    <p id="result"></p>
+    <script>
+        /*
+            input 요소에 점수를 입력하고
+            성적확인 버튼을 누르면
+            점수가 90점 이상이면 "A 입니다."
+            점수가 80점 이상이면 "B 입니다."
+            점수가 70점 이상이면 "C 입니다."
+            점수가 60점 이상이면 "D 입니다."
+            점수가 60점 미만이면 "F 입니다."
+            를 p요소에 출력하시오
+        */
+
+        document.querySelector("#checkBtn").addEventListener("click",function(){
+            let score = Number(document.querySelector("#jumsu").value);
+            let p = document.querySelector("#result");
+            if(score >= 90){
+                p.innerText = "A 입니다.";
+            }else if(score >= 80){
+                p.innerText = "B 입니다.";
+            }else if(score >= 70){
+                p.innerText = "C 입니다.";
+            }else if(score >= 60){
+                p.innerText = "D 입니다.";
+            }else{
+                p.innerText = "F 입니다.";
+            }
+        });
+        
+    </script>
+</body>
+</html>

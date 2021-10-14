@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step04_if.html</title>
+</head>
+<body>
+    <p id="one"></p>
+    <script>
+        let isFun = confirm("javascript 가 재미있으면 확인을 누르세요.");
+
+        //만일 isFun이 ture일때만 아래의 코드를 실행하고 싶다면...
+
+        /*
+        웹브라우저야 만약에 isFun에 true가 들어있으면 아래의 한줄을 수행하고
+        그렇지 않으면 수행하지마!
+
+        이말을 javascript로 표한하면 아래와 같다.
+        */
+
+        if(isFun){
+            document.querySelector("#one").innerTexxt = "좋아요!";
+        }
+        
+    </script>
+</body>
+</html>

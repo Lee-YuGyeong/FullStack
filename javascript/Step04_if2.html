@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step04_if2.html</title>
+</head>
+<body>
+    <input type="text" id="jumsu" placeholder="점수를 입력하세요...">
+    <button id="checkBtn">체크하기</button>
+    <p id="result"></p>
+    <script>
+
+        /* input 요소에 점수를 입력하고
+        체크하기 버튼을 눌렀을때
+        입력한 점수가 60점 이상이면
+        p요소에 "합격입니다."를 출력하는 코드를 작성해 보세요.
+        */
+
+        document.querySelector("#checkBtn").addEventListener("click",function(){
+            if(Number(document.querySelector("#jumsu").value)>=60){
+                document.querySelector("#result").innerText = "합격입니다."
+        }
+        });
+        
+
+    </script>
+</body>
+</html>
