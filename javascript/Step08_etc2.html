@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step08_etc2.html</title>
+</head>
+<body>
+    <button id="addBtn">추가하기</button>
+    <div id="one">
+
+    </div>
+
+    <script>
+        document.querySelector("#addBtn").addEventListener("click",function(){
+            /*
+                insertAdjacentElement() 와 insertAdjacentHTML() 을 비교해보세요
+            */
+            document.querySelector("#one").insertAdjacentHTML("beforeend","<p>추가된p요소</p>");
+        });
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step08_etc.html</title>
+</head>
+<body>
+    <h1>innerText vs innerHTML</h1>
+    <div id="one">
+
+    </div>
+    <div id="two">
+    
+    </div>
+    <button id="addBtn">추가하기</button>
+    <div id="three">
+
+    </div>
+    <script>
+        document.querySelector("#one").innerText = "<a href='https://daum.net'>daum</a>";
+
+        // 대입한 문자열을 html형식으로 해석해서 자식 요소로 두기
+        document.querySelector("#two").innerHTML = "<a href='https://daum.net'>daum</a>";
+
+        document.querySelector("#addBtn").addEventListener("click",function(){
+            document.querySelector("#three").innerHTML="<p>추가된 p요소</p>";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step08_etc4.html</title>
+</head>
+<body>
+    <h1>일정시간 지연시켜서 어떤 작업 수행하기</h1>
+    <button id="alertbtn">5초 이후에 알림띄우기</button>
+    <script>
+        document.querySelector("#alertbtn").addEventListener("click",function(){
+            // setTimeout(호출될 함수, 지연시간);
+            setTimeout(function(){
+                alert("알림!");
+            },5000);
+        });
+    </script>
+</body>
+</html>
