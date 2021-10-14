@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step05_example2.html</title>
+</head>
+<body>
+    <h1>논리 연산자 테스트중...</h1>
+    <input type="text" id="inputId" placeholder="아이디 입력..."/>
+    <input type="password" id="inputPwd" placeholder="비밀번호 입력..."/>
+    <button id="authBtn">인증하기</button>
+    <p id="result"></p>
+    <script>
+        /*
+            아이디는  "gura" 비밀번호는 "1234" 가 맞는 정보이다.
+
+            아이디 와 비밀번호를 입력하고 인증하기 버튼을 눌렀을때 
+            해당 정보가 일치하는지 판별해서 일치하면 
+            p 요소의 innerText 로  "인증 되었습니다." 를 출력하고
+            일치하지 않으면 "아이디 혹은 비밀번호가 틀려요" 를 출력하도록
+            프로그래밍 해 보세요. 
+            [ hint ]
+            같은지 비교하는 비교 연산자  == 
+        */
+
+        document.querySelector("#authBtn").addEventListener("click",function(){
+            let id = document.querySelector("#inputId").value;
+            let pw = document.querySelector("#inputPwd").value;
+
+
+            if ( id == "gura" && pw == "1234"){
+                document.querySelector("#result").innerText = "인증 되었습니다.";
+            }else{
+                document.querySelector("#result").innerText = "아이디 혹은 비밀번호가 틀려요.";
+            }
+        });
+
+    </script>
+
+</body>
+</html>
