@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step07_this4.html</title>
+    <style>
+        p{
+            cursor: pointer;
+        }
+        p:hover{
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>제거할 p 요소를 클릭하세요</h1>
+    <button id="addBtn">p 요소 추가하기</button>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <p>p4</p>
+    <p>p5</p>
+
+    <script>
+        /* 
+            위의 5개의 p요소에서 클릭한 요소만 제거 되도록 프로그래밍 해보세요.
+        */
+        let ps = document.querySelectorAll("p");
+
+        for(let i=0;i<ps.length;i++){
+            ps[i].addEventListener("click",function(){
+                this.remove();
+            });
+            
+        }
+
+
+        // 추가 버튼을 눌렀을때 실행할 함수 등록
+        document.querySelector("#addBtn").addEventListener("click",function(){
+            //1. p요소를 만들어서
+            let newP = document.createElement("p");
+            //2. innerText도 출력하고
+            newP.innerText = "새로 만든 P 요소";
+            //3. body에 append한다.
+            document.querySelector("body").append(newP);
+            //4. 새로 만든 요소에도 click이벤트가 일어났을때 실행할 함수를 등록한다.
+            newP.addEventListener("click",function(){
+                this.remove();
+                
+            });
+            
+        });
+
+    </script>
+</body>
+</html>

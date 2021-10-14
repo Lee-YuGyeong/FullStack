@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step07_this3.html</title>
+    <style>
+        p{
+            cursor: pointer;
+        }
+        p:hover{
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>제거할 p 요소를 클릭하세요</h1>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <p>p4</p>
+    <p>p5</p>
+
+    <script>
+        /* 
+            위의 5개의 p요소에서 클릭한 요소만 제거 되도록 프로그래밍 해보세요.
+        */
+        let ps = document.querySelectorAll("p");
+
+        for(let i=0;i<ps.length;i++){
+            ps[i].addEventListener("click",function(){
+                this.remove();
+            });
+        }
+        
+    </script>
+</body>
+</html>
