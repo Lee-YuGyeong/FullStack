@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step06_createElement3.html</title>
+</head>
+<body>
+    <button id="addBtn">이미지 추가</button>
+    <div id="one">
+
+    </div>
+    <script>
+        /*
+            이미지 추가 버튼을 누르면
+            <img src = "images/kim1.png" alt="김구라 이미지">
+            요소를 만들어서 위의 div에 추가되도록 해보세요.
+        */
+       
+        document.querySelector("#addBtn").addEventListener("click",function(){
+            let img = document.createElement("img");
+            img.setAttribute("src","images/kim1.png");
+            img.setAttribute("alt","김구라 이미지");
+
+            document.querySelector("#one").append(img);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step06_createElement.html</title>
+</head>
+<body>
+    <h1>문서 객체를 javascript로 만들기</h1>
+    <button id="makeBtn">만들기</button>
+    <div id="one">
+
+    </div>
+    <script>
+        /*
+            페이지 로딩 시점에
+            <p>p1 입니다</p>
+            모양의 요소를 자바스크립트로 만들어서 위의 div에 추가해보세요
+        */
+        /*
+            만들기 버튼을 누르면
+            <p>버튼으로 추가</p>
+            모양의 요소를 자바스크립트로 만들어서 위의 div에 추가해보세요
+        */
+
+        let p1 = document.createElement("p").innerText = "p1 입니다";
+        document.querySelector("#one").append("p1");
+
+        document.querySelector("#makeBtn").addEventListener("click",function(){
+            let p2 = document.createElement("p").innerText = "버튼으로 추가";
+            document.querySelector("#one").append("p2");
+        });
+    </script>
+</body>
+</html>

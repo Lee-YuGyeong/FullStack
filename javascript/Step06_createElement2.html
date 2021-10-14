@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step06_createElement2.html</title>
+</head>
+<body>
+    <input type="text" id="inputMsg" placeholder="메세지 입력...">
+    <button id="one">추가</button>
+    <ul id="msgList">
+        <li>하나</li>
+        <li>두울</li>
+    </ul>
+    <script>
+        /*
+            input요소에 메세지를 입력하고 추가 버튼을 누르면
+            li 요소가 동적으로 만들어지고
+            입력한 메세지는 li요소의 innerText로 출력해서
+            ul 요소의 자식요소로 추가해보세요.
+        */
+
+        document.querySelector("#one").addEventListener("click",function(){
+            msg = document.querySelector("#inputMsg").value;
+
+            let li = document.createElement("li");
+            li.innerText = msg;
+            
+            document.querySelector("#msgList").append(li);
+        });
+        
+
+    </script>
+</body>
+</html>
