@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_drawPanel.html</title>
+    <style>
+         canvas{
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>그림판</h1>
+    <canvas id="myCanvas" width="500" height="500"></canvas><br>
+    <input type="color" id="inputColor"/>
+    <select id="lineWidth">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option>4</option>
+        <option selected>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+    </select>
+    <script>
+        let canvas=document.querySelector("#myCanvas");
+        let context=canvas.getContext("2d");
+
+        //기본 선의 굵기지정
+        context.lineWidth=5;
+
+        //마우스가 down 된 상태인지 여부를 관리할 변수만들고 초기값 false 대입
+        let isMouseDown = false;
+
+        // canvas 에 mousedown 이벤트가 일어 났을때 실행할 함수 등록 
+        document.querySelector("#myCanvas").addEventListener("mousedown", function(e){
+            isMouseDown=true;
+            //이벤트가 일어난 곳의 좌표에서 그림을 그릴 준비를 한다.
+            let eventX = e.offsetX;
+            let eventY = e.offsetY;
+            context.beginPath();
+            context.moveTo(eventX, eventY);
+        });
+        document.querySelector("#myCanvas").addEventListener("mousemove", function(e){
+            //웹브라우저야 마우스가 down 된 상태에서만 아래의 코드를 실행해줘~
+            if(isMouseDown){
+                //이벤트가 일어난 곳의 좌표까지 선을 연결한다.
+                let eventX = e.offsetX;
+                let eventY = e.offsetY;
+                context.lineTo(eventX, eventY);
+                context.stroke();
+            }
+        });
+        document.querySelector("#myCanvas").addEventListener("mouseup", function(){
+            //마우스를 띤 상태라고 표시한다 
+            isMouseDown=false;
+        });
+        //마우스가 canvas 를 벗어 났을때 실행할 함수 등록 
+        document.querySelector("#myCanvas").addEventListener("mouseout", function(){
+            //마우스를 띤 상태라고 표시한다 
+            isMouseDown=false;
+        });
+
+        // input type="color" 에 change 이벤트가 일어 났을때 실행할 함수 등록
+        document.querySelector("#inputColor").addEventListener("change", function(){
+            //현재 색상값을 읽어와서 
+            let thisColor=document.querySelector("#inputColor").value;
+            //context 에 반영한다.
+            context.strokeStyle=thisColor;
+        });
+
+        // select 에 change 이벤트가 일어 났을때 실행할 함수 등록
+        document.querySelector("#lineWidth").addEventListener("change", function(){
+            /*
+                이벤트가 일어난 바로 그 요소의 참조값은 this 로 얻어낼수 있다.
+            */
+            //select 에 선택된 option value 값을 읽어온다.
+            let thisWidth = this.value;
+            //읽어온 값을 선의 굵기에 반영하기 
+            context.lineWidth=thisWidth;
+        });
+    </script>
+</body>
+</html>
