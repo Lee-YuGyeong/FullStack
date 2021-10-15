@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_Math.html</title>
+</head>
+<body>
+    <h1>Math 객체 활용하기</h1>
+    <script>
+        // sin 60도
+        let result = Math.sin(60*Math.PI/180);
+
+        // 반올림 값 얻어내기
+        let result2 = Math.round(10.6);
+        let result3 = Math.round(10.3);
+
+        // 올림 값 얻어내기
+        let result4 = Math.ceil(10.6);
+        let result5 = Math.ceil(10.3);
+
+        // 내림 값 얻어내기
+        let result6 = Math.floor(10.6);
+        let result7 = Math.floor(10.3);
+
+        // 0 이상 1 미만의 랜덤한 실수 얻어내기
+        let result8 = Math.random();
+        // 0 이상 10 미만의 랜덤한 실수 얻어내기
+        let result9 = Math.random()*10;
+        // 0 이상 9 이하의 랜덤한 정수 얻어내기
+        let result10 = Math.floor(Math.random()*10);
+        // 10 이상 19 이하의 랜덤한 정수 얻어내기
+        let result11 = Math.floor(Math.random()*10)+10;
+        // 1 이상 45 이하의 랜덤한 정수 얻어내기
+        let result12 = Math.floor(Math.random()*45)+1;
+    </script>
+</body>
+</html>
