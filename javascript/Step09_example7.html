@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_example6.html</title>
+    <style>
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>컴퓨터와 가위바위보!</h1>
+    <label for="one">선택</label>
+    <select id="one">
+        <option value="0">가위</option>
+        <option value="1">바위</option>
+        <option value="2">보</option>
+    </select>
+    <!-- <button id="startBtn">Start</button> -->
+    <button id="clearBtn">초기화</button>
+    <br>
+    <table>
+        <tr>
+            <th>나</th>
+            <th>컴퓨터</th>
+            <th>결과</th>
+            <th>점수</th>
+        </tr>
+        <tr>
+            <td id="me">
+                <img src="images/scissor.jpg">
+            </td>
+            <td id="computer">
+                <img src="images/scissor.jpg">
+            </td>
+            <td id="result">
+
+            </td>
+            <td id="score">
+
+            </td>
+        </tr>
+    </table>
+    <script>
+
+        let score=0;
+
+        // id 가 one 인 요소에 change 이벤트가 일어 났을때 실행할 함수 등록
+        document.querySelector("#one").addEventListener("change", function(){
+
+            let selectedValueMe=Number(this.value);
+            let selectedValueComputer=Number(Math.floor(Math.random()*3));
+
+            let data = [ '<img src="images/rock.jpg">', '<img src="images/scissor.jpg">', '<img src="images/paper.jpg">'];
+            
+            document.querySelector("#me").innerHTML = data[selectedValueMe];
+            document.querySelector("#computer").innerHTML = data[selectedValueComputer];
+
+            
+            str = "";
+            if (selectedValueMe==0){
+                if (selectedValueComputer==0){
+                    str = "비겼습니다!"
+                }else if(selectedValueComputer==1){
+                    str = "이겼습니다!"
+                    score++;
+                }else{
+                    str = "졌습니다!"
+                }
+            }else if(selectedValueMe==1){
+                if (selectedValueComputer==0){
+                    str = "졌습니다!"
+                }else if(selectedValueComputer==1){
+                    str = "비겼습니다!"
+                }else{
+                    str = "이겼습니다!"
+                    score++;
+                }
+            }else{
+                if (selectedValueComputer==0){
+                    str = "이겼습니다!"
+                    score++;
+                }else if(selectedValueComputer==1){
+                    str = "졌습니다!"
+                }else{
+                    str = "비겼습니다!"
+                }
+            }
+            document.querySelector("#result").innerText = str;
+            document.querySelector("#score").innerText = score;
+        });
+
+        document.querySelector("#clearBtn").addEventListener("click",function(){
+            score = 0;
+            document.querySelector("#score").innerText = score;
+        });
+    </script>
+
+</body>
+</html>

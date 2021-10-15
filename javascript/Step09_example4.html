@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_example4.html</title>
+    <style>
+        img{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>랜덤한 결과 얻어내기</h1>
+    <button id="testBtn">테스트</button>
+    <div id="result">
+
+    </div>
+    <script>
+        /*
+            테스트 버튼을 누르면
+            0~2 사이의 랜덤한 정수를 얻어내서
+
+            0 이 나오면 scissors.jpg 이미지를 
+            1 이 나오면 rock.jpg 이미지를
+            2 가 나오면 paper.jpg 이미지를
+
+            위의 div 안에 출력하는 프로그래밍을 해 보세요. 
+
+            <img src="images/scissor.jpg">
+        */
+        document.querySelector("#testBtn").addEventListener("click", function(){
+            //1. 0~2 사이의 랜덤한 정수 얻어내기 
+            let ranNum = Math.floor(Math.random()*3);
+            //img 요소를 만들어서 참조값을 img 라는 변수에 담기 
+            let img=document.createElement("img");
+            //일단 삭제
+            document.querySelector("#result").innerText="";
+            //배열에 미리 로딩할 이미지의 경로를 넣어놓고 
+            let data = [ 'images/scissor.jpg', 'images/rock.jpg', 'images/paper.jpg'];
+            
+            //src 속성의 값을 넣어주기
+            img.setAttribute("src", data[ranNum]);
+            
+            //원하는 곳에 추가하기
+            document.querySelector("#result").append(img);
+
+        });
+ 
+    </script>
+
+</body>
+</html>

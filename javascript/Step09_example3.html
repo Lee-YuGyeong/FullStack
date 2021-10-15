@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_example3.html</title>
+    <style>
+        img{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>랜덤한 결과 얻어내기</h1>
+    <button id="testBtn">테스트</button>
+    <div id="result">
+
+    </div>
+    <script>
+    /*
+        테스트 버튼을 누르면
+        0~2 사이의 랜덤한 정수를 얻어내서
+        0 이 나오면 scissor.jpg 이미지를
+        1 이 나오면 rock.jpg 이미지를
+        2 가 나오면 paper.jpg 이미지를
+        위의 div안에 출력하는 프로그래밍을 해보세요.
+    */
+    document.querySelector("#testBtn").addEventListener("click",function(){
+        let num = Number(Math.floor(Math.random()*3));
+        let image = "";
+        if(num==0){
+            image = "images/scissor.jpg";
+        }else if(num==1){
+            image = "images/rock.jpg";
+        }else{
+            image = "images/paper.jpg";
+        }
+        document.querySelector("#result").innerHTML = `<img src=${image}>`;
+
+        // let result1=["<img src='images/scissor.jpg'>", "<img src='images/rock.jpg'>","<img src='images/paper.jpg'>"];
+        // document.querySelector("#result").innerHTML= result1[num];
+
+    });
+    
+    </script>
+</body>
+</html>

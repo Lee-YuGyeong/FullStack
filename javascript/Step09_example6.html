@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_example6.html</title>
+    <style>
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <label for="one">선택</label>
+    <select id="one">
+        <option value="0">가위</option>
+        <option value="1">바위</option>
+        <option value="2">보</option>
+    </select>
+    <div id="result">
+        <img src="images/scissor.jpg">
+    </div>
+    <script>
+        /*
+            select 를 선택했을때 선택한 아이템에 해당하는 가위, 바위, 보 이미지를
+            div 에 출력해 보세요. 
+        */
+       document.querySelector("#one").addEventListener("change",function(){
+        let selectedValue=Number(this.value);
+        let data=['images/scissor.jpg', 'images/rock.jpg', 'images/paper.jpg'];
+        
+        document.querySelector("#result").innerHTML = `<img src=${data[selectedValue]}>`;
+        
+       });
+    </script>
+
+</body>
+</html>

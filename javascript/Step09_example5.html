@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_example5.html</title>
+</head>
+<body>
+    <label for="one">선택</label>
+    <select id="one">
+        <option value="0">가위</option>
+        <option value="1">바위</option>
+        <option value="2">보</option>
+    </select>
+    <p id="result">가위</p>
+    <script>
+        /*
+            select 를 선택했을때 선택한 아이템을 p 요소에 출력하는 예제 구현하기 
+        */
+       document.querySelector("#one").addEventListener("change",function(){
+        let data=["가위","바위","보"];
+        document.querySelector("#result").innerText = data[this.value];    
+       });
+    </script>
+
+</body>
+</html>
