@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step11_review.html</title>
+</head>
+<body>
+    <script>
+        let names=["김구라","해골","원숭이","주뎅이","덩어리"];
+        names.forEach(function(item,index){
+            //즉시 배열의 방의 갯수만큼 호출되고 함수의 인자로 item과 index가 전달된다.
+            console.log(item+":"+index);
+        });
+
+        //미리 만들어진 유틸리티 함수라고 가정을 해보자
+        function useFunc(f){
+            f(1,"김구라");
+        }
+
+        useFunc(function(num,name){
+            console.log(num+"호출됐네"+name)
+        });
+    </script>
+    
+
+</body>
+</html>

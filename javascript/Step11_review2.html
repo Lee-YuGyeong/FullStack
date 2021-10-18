@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step11_review2.html</title>
+</head>
+<body>
+    <div>div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <div>div4</div>
+    <div>div5</div>
+
+    <script>
+        let car1 = {
+            name:"소나타",
+            drive:function(){
+                //함수안에서 this는 자신을 포함하고 있는 객체의 참조값을 가리킨다. 
+                console.log(this.name+"이(가) 달려요");
+            }
+        };
+
+        let divs = document.querySelectorAll("div");
+
+        for(let i=0;i<divs.length;i++){
+            divs[i].addEventListener("click",function(){
+                //여기서 this는 "click" 이벤트가 일어난 바로 그 객체의 참조값을 가리킨다.
+                this.innerText = "clicked";
+            });
+        }
+
+        let div = {
+            addEventListener:function(eventName,listener){
+                listener();
+            }
+        }
+
+        Math.floor(Math.random()*41)-20 // -20 ~ +20
+        Math.floor(Math.random()*26)+75 // 75 ~ 100
+    </script>
+</body>
+</html>
