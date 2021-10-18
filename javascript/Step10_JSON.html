@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step10_JSON.html</title>
+</head>
+<body>
+    <script>
+        /*
+            json 문자열 작성 형식
+
+            형식1: { }
+            형식2: [ ]
+
+            {
+                "키값" : value, "키값2":value2, ...
+            }
+
+            - 키값은 반드시 double quotation ""로 감싸야 된다.
+            - value 가 될 수 있는 형식
+            숫자 : 10 또는 10.1 같이 숫자를 작성하면된다.
+            문자 : "xxx"  double quotation 으로 감싸면 된다.
+            논리값 : true or false 를 작성하면 된다.
+            object : { }
+            array : [ ]
+            빈값 : null
+            function은 존재하지 않는다.
+            array는 [value1, value2, value3,] 와 같이 , 로 구분해서 값을 나열하면된다.
+        */
+
+        /*
+
+            {
+                "num":1,
+                "name":"김구라",
+                "isMan":true,
+                "phone":{
+                    "brand":"apple",
+                    "color":"pink"
+                },
+                "friends":["원숭이","주뎅이","덩어리"],
+                "pocket":null
+            }
+        */
+        
+        //서버로부터 받아온 문자열이라고 가정하자.
+        let info = `
+        {
+                "num":1,
+                "name":"김구라",
+                "isMan":true,
+                "phone":{
+                    "brand":"apple",
+                    "color":"pink"
+                },
+                "friends":["원숭이","주뎅이","덩어리"],
+                "pocket":null
+            }
+        `;
+
+        // json 형식의 문자열을 object로 변환하기
+        let obj = JSON.parse(info);
+
+        //cosole 창에서 각각의 변수에 들어 있는 값을 확인해 보세요.
+        let result1 = obj.num;
+        let result2 = obj.name;
+        let result3 = obj.phone;
+        let result4 = obj.phone.brand;
+        let result5 = obj.phone.color;
+        let result6 = obj.friends;
+        let result7 = obj.friends[0];
+        let result8 = obj.friends[1];
+        
+        let car1 = {name:"소나타", brand:"현대"};
+
+        //object를 json 문자열로 변환하기
+        let result9 = JSON.stringify(car1);
+
+    </script>
+</body>
+</html>
