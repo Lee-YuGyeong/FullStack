@@ -1,0 +1,13 @@
+<info>
+    <num>1</num>
+    <name>김구라</name>
+    <addr>노량진</addr>
+    <isMan>true</is Man>
+</info> //xml
+
+{
+    "num":1,
+    "name":"김구라",
+    "addr":"노량진",
+    "isMan":true
+} // json
