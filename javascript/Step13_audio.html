@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step13_audio.html</title>
+</head>
+<body>
+    <h1>오디오 재생연습</h1>
+    <audio id="one" src="sounds/piano.mp3" controls></audio>
+    <button id="myBtn">눌러보셈</button>
+    <script>
+        let pianoSound = document.querySelector("#one");
+
+        let pianoSound2 = new Audio("sounds/piano.mp3");
+
+        let laserSound = new Audio("sounds/laser1.wav");
+
+        document.querySelector("#myBtn").addEventListener("click",function(){
+            //빠르게 처음부터 다시 재생하고 싶다면
+            laserSound.currentTime=0;
+            laserSound.play();
+        });
+
+        //스페이스바를 눌렀을때 레이저 소리를 재생해 보세요.
+        document.querySelector("body").addEventListener("keydown",function(e){
+            //e는 key 이벤트 객체이다.
+            console.log(e);
+            if(e.keyCode == 32){
+                laserSound.currentTime=0;
+                laserSound.play();
+            }
+
+        });
+    </script>
+</body>
+</html>
