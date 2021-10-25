@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dragonFlight.html</title>
+    <style>
+        canvas{
+            border: 1px dotted gray;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <h1>드래곤 플라이트 게임</h1>
+    <canvas id="myCanvas" width="500" height="800"></canvas>
+    <script>
+        let canvas=document.querySelector("#myCanvas");
+        let context=canvas.getContext("2d");
+
+        //배경이미지 로딩
+        let backImg=new Image();
+        backImg.src="images/backbg.png";
+
+        //드레곤 이미지 로딩
+        let unitImg1 = new Image();
+        let unitImg2 = new Image();
+        let unitImg3= new Image();
+        unitImg1.src = "images/unit1.png";
+        unitImg2.src = "images/unit2.png";
+        unitImg3.src = "images/unit3.png";
+        //드래곤 이미지 객체를 배열에
+        let unitImgs = [unitImg1,unitImg2,unitImg3];
+
+        let unitX = 250;
+        let unitY = 750;
+
+        //배경화면의 y 좌표
+        let back1Y = 0;
+        let back2Y = -800;
+
+        //배열에 저장된 드래곤 이미지를 불러낼 인덱스
+        let dragonIndex = 0;
+        //let dragonIndexHelper = 0;
+
+        //카운트를 셀 변수를 만들고 0으로 초기화
+        let count=0;
+
+        //미사일 이미지 로딩
+        let missImg = new Image();
+        missImg.src = "images/mi2.png";
+
+        //미사일 여러개의 정보(object)를 저장할 배열
+        let missList = [];
+
+        // 효과음 로딩
+        let laserSound = new Audio("sounds/laser1.wav");
+
+        //하얀 적기 이미지 로딩
+        const silverImg1=new Image();
+        silverImg1.src="images/silver1.png";
+        const silverImg2=new Image();
+        silverImg2.src="images/silver2.png";
+        //하얀 적기 이미지를 배열에 저장해 놓기 
+        const silverImgs=[silverImg1, silverImg2];
+
+        //적기 객체를 저장할 배열
+        const enemyList=[];
+
+        setInterval(function(){
+            //count 값 증가
+            count++;
+            //배경이미지 그리기
+            context.drawImage(backImg, 0, back1Y, 500, 800);
+            context.drawImage(backImg, 0, back2Y, 500, 800);
+
+            //반복문 돌면서 미사일 그리기
+            for(let i=0;i<missList.length;i++){
+                //i번째 방의 미사일 객체
+                let tmp = missList[i];
+                //미사일 이미지 그리기
+                context.drawImage(missImg, tmp.x-25,tmp.y-25,50,50);
+            }
+
+
+            //드래곤 이미지 그리기
+            context.drawImage(unitImgs[dragonIndex],unitX-50,unitY-50,100,100);
+
+            //배경화면 스크롤
+            backScroll();
+            //드래곤 애니메이션
+            dragonAni();
+            //미사일 관련 처리
+            makeMissile();
+            moveMissile();
+            checkMisile();
+
+        }, 10);
+
+        function backScroll(){
+            //배경이미지의 좌표 변경하기
+            back1Y += 2;
+            back2Y += 2;
+
+            if(back1Y == 800 ){
+                back1Y = -800;
+            }
+            if(back2Y == 800 ){
+                back2Y = -800;
+            }
+        }
+
+        function dragonAni(){
+            if(count%20==0){
+                dragonIndex++;
+              
+                if (dragonIndex==3){
+                    dragonIndex=0;
+                }
+
+            }
+        }
+
+        function makeMissile(){
+            if(count%10==0){
+                //드래곤의 현재 위치에서 미사일 객체를 만들어서 배열에 저장하기
+                let mObj = {x:unitX, y:unitY, isDelete : false};
+                missList.push(mObj);
+            }
+
+            // 레이저 소리 나오게 ( 완전 시끄러움 주의 .. )
+            // laserSound.currentTime=0;
+            // laserSound.play();
+
+        }
+        function moveMissile(){
+            //반복문 돌면서 미사일 움직이게 하기
+            for(let i=0;i<missList.length;i++){
+                let tmp = missList[i];
+                //객체에 저장된 y값을 10 씩 감소 시키기
+                tmp.y -= 10;
+                //만일 미사일이 화면위로 벗어 났다면
+                if(tmp.y <= -25){
+                    //해당 미사일을 나중에 제거 할 수 있도록 표시해 둔다.
+                    tmp.isDelete = true;
+
+                }
+            }
+        }
+        function checkMisile(){
+            //반복문 돌면서 제거할 미사일 객체는 배열에서 제거하기
+            for(let i=0;i<missList.length;i++){
+                //i번째 미사일 객체의 참조값을 얻어와서
+                let tmp = missList[i];
+                //만일 제거해야되는 미사일 객체라면
+                if(tmp.isDelete){
+                    //미사일 배열에서 i번째 방에서부터 1개 삭제하기
+                    missList.splice(i,1);
+                }
+            }
+        }
+
+        //mousemove 이벤트가 일어났을때 mouse의 x좌표를 unitX에 반영해 보세요
+        canvas.addEventListener("mousemove",function(e){
+            unitX = e.offsetX;
+        });
+
+        //키 이벤트가 필요 하다면  
+        // 이벤트명 : keydown or keyup 
+        document.querySelector("body").addEventListener("keydown", function(e){
+            //눌러진 키의 코드값
+            console.log(e.keyCode);
+        });
+
+    </script>
+</body>
+</html>
