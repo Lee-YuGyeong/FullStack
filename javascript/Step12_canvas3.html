@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step12_canvas3.html</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>canvas 요소 사용해 보기</h1>
+    <!--
+        글자, 그림, 이미지 등을 javascript 를 활용해서 출력할수 있는 canvas 요소
+        속성을 이용해서 가로, 세로 크기를 지정한다. 
+    -->
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <script>
+        // canvas 의 참조값 얻어오기
+        let canvas=document.querySelector("#myCanvas");
+        // canvas 에 그림을 그릴수 있는 도구(context) 의 참조값 얻어오기
+        let context=canvas.getContext("2d");
+        
+        //이미지 객체를 생성하고 
+        let kimImg=new Image();
+        //이미지 로딩을 시작한다.
+        kimImg.src="images/kim1.png";
+
+        //배경이미지
+        let backImg=new Image();
+        backImg.src="images/background.jpg";
+
+        let unitX=250;
+        let unitY=250;
+
+        setInterval(function(){
+            context.drawImage(backImg, 0, 0, 500, 500);
+            context.drawImage(kimImg, unitX-50, unitY-50, 100, 100);
+        },10)
+
+
+        //mousemove 이벤트가 일어났을때 실행할 함수 등록
+        canvas.addEventListener("mousemove",function(e){
+            //이벤트가 일어난곳의 좌표를 unitX,unitY에 반영하기
+            unitX = e.offsetX;
+            unitY = e.offsetY;
+        })
+        
+    </script>
+</body>
+</html>

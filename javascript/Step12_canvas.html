@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step12_canvas.html</title>
+    <style>
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>canvas 요소 사용해 보기</h1>
+    <!--
+        글자, 그림, 이미지 등을 javascript를 활용해서 출력할수 있는 canvas 요소
+        속성을 이용해서 가로, 세로 크기를 지정한다. 
+    -->
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <script>
+        //canvas의 참조값 얻어오기
+        let canvas = document.querySelector("#myCanvas");
+        //canvas에 그림을 그릴 수 있는 도구(context)의 참조값 얻어오기
+        let context = canvas.getContext("2d");
+
+
+        // context.translate(100,100); 먹지 이동
+        // context.rotate(1);
+
+        //선의 굵기
+        context.lineWidth=10;
+        //선의 색상
+        context.strokeStyle="#00ff00";
+        //선의 시작과 끝을 둥글게
+        context.lineCap="round";
+        //선의 교차점을 둥글게
+        context.lineJoin = "round";
+
+        //경로시작
+        context.beginPath();
+        //시작점 지정
+        context.moveTo(100,100);
+        //이을점 지정
+        context.lineTo(200,200);
+        context.lineTo(300,50);
+        //실제로 그리기
+        context.stroke();
+        //경로 마무리
+        context.closePath();
+        
+        //이미지 객체를 생성하고
+        let kimImg = new Image();
+        //이미지 로딩을 시작한다.
+        kimImg.src = "images/kim1.png";
+        //로딩이 완료되면 실행할 함수 등록
+        kimImg.onload=function(){
+            //canvas에 그리기 .drawImage(이미지, x, y, width, height)
+            context.drawImage(kimImg, 200,200,100,100);
+        };
+                
+        canvas.addEventListener("mousemove", function(e){
+            context.drawImage(kimImg, e.offsetX, e.offsetY, 100, 100);
+        });
+
+    </script>
+</body>
+</html>
