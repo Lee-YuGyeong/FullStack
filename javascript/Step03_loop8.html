@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_loop8.html</title>
+</head>
+<body>
+    <h1>배열의 forEach() 함수를 활용한 반복 작업</h1>
+    <p>p1</p>
+    <p>p2</p>
+    <p>p3</p>
+    <p>p4</p>
+    <p>p5</p>
+    <button id="changeBtn">바꾸기</button>
+    <script>
+        /*
+            바꾸기 버튼을 누르면 모든 p요소의 innerText를 "김구라"로 바꿔보세요.
+            단, 배열의 forEach()함수를 이용해서
+        */
+
+        document.querySelector("#changeBtn").addEventListener("click",function(){
+            document.querySelectorAll("p").forEach(function(item,index){
+                item.innerText = "김구라";
+            })
+        });
+    </script>
+</body>
+</html>
