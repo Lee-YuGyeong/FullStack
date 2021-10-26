@@ -36,13 +36,27 @@
         let unitX=250;
         let unitY=250;
 
+        let angle=0;
+
         setInterval(function(){
             context.drawImage(backImg, 0, 0, 500, 500);
-            context.drawImage(kimImg, unitX-50, unitY-50, 100, 100);
+
+            // context 의 현재상태(정상상태, 변화를 가하지 않은 상태)를 임시 저장한다.
+            context.save();
+            // 좌표계를 unit 이 있는 위치로 평행 이동한다.
+            context.translate(unitX,unitY);
+            // 좌표계를 회전 시킨다.
+            context.rotate(angle*Math.PI/180);
+            // 현재 좌표계에 이미지를 원점에 원하는 크기로 그린다.
+            context.drawImage(kimImg, 0-50, 0-50, 100, 100);
+            // 임시저장된(정상상태)로 context를 복구 시킨다.
+            context.restore();
+
+            angle++;
         },10)
 
 
-        //mousemove 이벤트가 일어났을때 실행할 함수 등록
+        //mousemove 이벤트가 일어났을때 실행할 함수 등록네
         canvas.addEventListener("mousemove",function(e){
             //이벤트가 일어난곳의 좌표를 unitX,unitY에 반영하기
             unitX = e.offsetX;
