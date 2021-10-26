@@ -13,7 +13,8 @@
     </style>
 </head>
 <body>
-    <h1>드래곤 플라이트 게임</h1>
+    <h1>드레곤 플라이트 게임</h1>
+    <button id="startBtn">Start</button><br>
     <canvas id="myCanvas" width="500" height="800"></canvas>
     <script>
         let canvas=document.querySelector("#myCanvas");
@@ -24,38 +25,38 @@
         backImg.src="images/backbg.png";
 
         //드레곤 이미지 로딩
-        let unitImg1 = new Image();
-        let unitImg2 = new Image();
-        let unitImg3= new Image();
-        unitImg1.src = "images/unit1.png";
-        unitImg2.src = "images/unit2.png";
-        unitImg3.src = "images/unit3.png";
-        //드래곤 이미지 객체를 배열에
-        let unitImgs = [unitImg1,unitImg2,unitImg3];
+        let unitImg1=new Image();
+        let unitImg2=new Image();
+        let unitImg3=new Image();
+        unitImg1.src="images/unit1.png";
+        unitImg2.src="images/unit2.png";
+        unitImg3.src="images/unit3.png";
+        //드레곤 이미지 객체를 배열에 순서대로 넣고 배열의 참조값을 unitImgs 라는 변수에 담기
+        let unitImgs=[unitImg1, unitImg2, unitImg3];
 
-        let unitX = 250;
-        let unitY = 750;
+        //드레곤의 좌표를 저장할 변수 선언하고 초기값 대입
+        let unitX=250;
+        let unitY=750;
 
         //배경화면의 y 좌표
-        let back1Y = 0;
-        let back2Y = -800;
+        let back1Y=0;
+        let back2Y=-800;
 
-        //배열에 저장된 드래곤 이미지를 불러낼 인덱스
-        let dragonIndex = 0;
-        //let dragonIndexHelper = 0;
-
-        //카운트를 셀 변수를 만들고 0으로 초기화
+        //배열에 저장된 드레곤 이미지를 불러낼 인덱스
+        let dragonIndex=0;
+        //카운트를 셀 변수를 만들고 0으로 초기화 
         let count=0;
 
         //미사일 이미지 로딩
-        let missImg = new Image();
-        missImg.src = "images/mi2.png";
+        let missImg=new Image();
+        missImg.src="images/mi2.png";
 
         //미사일 여러개의 정보(object)를 저장할 배열
-        let missList = [];
+        let missList=[];
 
-        // 효과음 로딩
-        let laserSound = new Audio("sounds/laser1.wav");
+        //효과음 로딩
+        let laserSound=new Audio("sounds/laser1.wav");
+        let shootSound=new Audio("sounds/shoot1.wav");
 
         //하얀 적기 이미지 로딩
         const silverImg1=new Image();
@@ -65,105 +66,301 @@
         //하얀 적기 이미지를 배열에 저장해 놓기 
         const silverImgs=[silverImg1, silverImg2];
 
+        //노란 적기 이미지 로딩
+        const goldImg1=new Image();
+        goldImg1.src="images/gold1.png";
+        const goldImg2=new Image();
+        goldImg2.src="images/gold2.png";
+        //노란 적기 이미지를 배열에 저장해 놓기 
+        const goldImgs=[goldImg1, goldImg2];
+        
+        let enemyImgs=[silverImgs, goldImgs];
+
         //적기 객체를 저장할 배열
-        const enemyList=[];
+        let enemyList=[];
+
+        //점수를 관리할 변수
+        let point=0;
+
+        //게임이 시작 되었는지 여부를 관리할 변수 만들고 false 초기값 대입
+        let isStarted=false;
+        //드레곤이 추락하고 있는지 여부
+        let isFallingDragon=false;
+        //드레곤의 회전값
+        let dragonAngle=0;
+        //드레곤의 폭
+        let dragonWidth=100;
 
         setInterval(function(){
-            //count 값 증가
+
+
+            //카운트값 증가시키기 
             count++;
+
             //배경이미지 그리기
             context.drawImage(backImg, 0, back1Y, 500, 800);
             context.drawImage(backImg, 0, back2Y, 500, 800);
 
             //반복문 돌면서 미사일 그리기
-            for(let i=0;i<missList.length;i++){
+            for(let i=0; i<missList.length; i++){
                 //i번째 방의 미사일 객체
-                let tmp = missList[i];
-                //미사일 이미지 그리기
-                context.drawImage(missImg, tmp.x-25,tmp.y-25,50,50);
+                let tmp=missList[i];
+                context.drawImage(missImg, tmp.x-25, tmp.y-25, 50, 50);
             }
 
+            //반복문 돌면서 적기 그리기
+            for(let i=0; i<enemyList.length; i++){
+                // tmp 는 적기의 정보를 담고 있는 {x: , y: } 이다.
+                let tmp=enemyList[i];
+                context.drawImage(enemyImgs[tmp.type][tmp.index], tmp.x-50, tmp.y-50, 100, 100);
+            }
 
-            //드래곤 이미지 그리기
-            context.drawImage(unitImgs[dragonIndex],unitX-50,unitY-50,100,100);
+            //점수 표시
+            context.font="30px Consolas";
+            context.fillStyle="yellow";
+            // .fillText(출력할문자열, 좌하단x, 좌하단y )
+            context.fillText("Point : "+point, 0, 30);
+
+            if(!isStarted){
+                return;
+            }
+
+            if(isFallingDragon){
+                dragonAngle += 0.1;
+                dragonWidth -= 0.5;
+                context.save();
+                context.translate(unitX, unitY);
+                context.rotate(dragonAngle);
+                context.drawImage(unitImgs[dragonIndex],
+                                    0-dragonWidth/2, 0-dragonWidth/2, 
+                                    dragonWidth, dragonWidth);
+                context.restore();
+                //만일 드레곤이 완벽히 추락했다면
+                if(dragonWidth <= 0){
+                    //이제 게임을 끝내자 
+                    point=0;
+                    enemyList.length=0;
+                    missList.length=0;
+                    isFallingDragon=false;
+                    dragonAngle=0;
+                    dragonWidth=100;
+                    isStarted=false;
+                }
+
+            }else{
+                //드레곤 이미지 그리기
+                context.drawImage(unitImgs[dragonIndex], unitX-50, unitY-50, 100, 100);
+            }
 
             //배경화면 스크롤
             backScroll();
-            //드래곤 애니메이션
+            //드레곤 애니메이션
             dragonAni();
-            //미사일 관련 처리
+            //미사일 관련 처리 
             makeMissile();
             moveMissile();
-            checkMisile();
-
+            checkMissile();
+            //적기 관련 처리 
+            makeEnemy();
+            moveEnemy();
+            checkEnemy();
+            checkCrash();
+            enemyAni();
+            
+            checkDragon();
         }, 10);
+
+        //드레곤과 적기의 충돌검사
+        function checkDragon(){
+            //만일 드레곤이 이미 추락하는 중이라면
+            if(isFallingDragon){
+                //함수를 여기서 끝내라!
+                return;
+            }
+            enemyList.forEach(function(item){
+                //드레곤과 적기와의 거리 구하기 
+                let distance = Math.sqrt( (item.x - unitX)**2 + (item.y - unitY)**2 );
+                //거리가 70 보다 작으면 드레곤이 적기와 부딛쳤다고 판정해 보자.
+                if(distance < 70){
+                    console.log("으악!");
+                    isFallingDragon=true;
+                }
+            });
+        }
+
+        function moveEnemy(){
+            //적기 움직이기
+            for(let i=0; i<enemyList.length; i++){
+                let tmp=enemyList[i];
+                tmp.y += 5;
+                //만일 적기가 아래쪽 화면을 벗어나면
+                if(tmp.y >= 850){
+                    //배열에서 제거되도록 표시해 둔다. 
+                    tmp.isDelete=true;
+                }
+            }
+        }
+        function checkEnemy(){
+            //배열에서 제거할 적기는 제거하기
+            for(let i=0; i<enemyList.length; i++){
+                let tmp=enemyList[i];
+                if(tmp.isDelete){
+                    enemyList.splice(i, 1);
+                }
+            }
+        }
+        function checkCrash(){
+            //미사일과 적기의 충돌 검사
+            for(let i=0; i<missList.length; i++){
+                //i 번째 미사일 객체를 불러온다. 
+                let m=missList[i];
+                for(let j=0; j<enemyList.length; j++){
+                    //j 번째 적기 객체를 불러온다. 
+                    let e=enemyList[j];
+                    // i 번째 미사일이 j번째 적기 영역 안에 있는지 여부 
+                    // i 번째 미사일이 j번째 적기를 맞추었는지 여부 
+                    let isCrash = m.x > e.x-50 && m.x < e.x+50 && m.y > e.y-50 && m.y < e.y+50;
+                    //만일 i 번째 미사일이 j번째 적기를 맞추었다면?
+                    if(isCrash){
+                        //1. 미사일제거
+                        m.isDelete=true;
+                        //2. 충돌 효과음 재생
+                        //shootSound.currentTime=0;
+                        //shootSound.play();
+                        //3. 적기의 에너지를 감소 시키기
+                        e.energy -= 50;
+                        //4. 에너지가 0 이하인 적기는 제거 될 수 있도록 표시한다.
+                        if(e.energy <=0 ){
+                            e.isDelete = true;
+                            //점수 올리기
+                            if(e.type==0){
+                                point+=10;
+                            }else if(e.type==1){
+                                point+=20;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        function enemyAni(){
+            if(count%20==0){
+                //적기 애니매이션
+                for(let i=0; i<enemyList.length; i++){
+                    let tmp=enemyList[i];
+                    //적기 이미지 인덱스를 증가 시키고 
+                    tmp.index++;
+                    //만일 없는 인덱스라면
+                    if(tmp.index==2){
+                        //다시 처음으로 인덱스를 되돌리기 
+                        tmp.index=0;
+                    }
+                }
+            }
+        }
+
+        //적기 5개 한셋트를 만드는 함수 
+        function makeEnemy(){
+            // 0~99 사이의 랜덤한 숫자 얻어내기 
+            let ranNum = Math.floor(Math.random()*100);
+
+            //만일 랜덤한 숫자가 1이 아니라면
+            if(ranNum != 10){
+                //함수를 여기서 끝내라 
+                return;
+            }
+
+            //테스트로 적기 5개의 정보를 { } 에 담아서 [ ] 에 넣어보기
+            for(let i=0; i<5; i++){
+                //적기의 type 을 렌덤하게 얻어내기
+                let type=Math.floor(Math.random()*2);
+                //적기의 type 에 따라서 에너지를 다르게 부여하기 
+                let energy;
+                if(type==0){
+                    energy=50;
+                }else if(type==1){
+                    energy=100;
+                }
+                let enemy={
+                    type:type,
+                    energy:energy,
+                    x:50+i*100,
+                    y:-50,
+                    index:0,
+                    isDelete:false  //적기를 배열에서 제거할지 여부 
+                };
+                enemyList.push(enemy);
+            }            
+        }
+
 
         function backScroll(){
             //배경이미지의 좌표 변경하기
             back1Y += 2;
             back2Y += 2;
 
-            if(back1Y == 800 ){
-                back1Y = -800;
+            //웹브라우저야 만일 back1Y 가 800 이면 back1Y 를 -800 으로 바꿔줘
+            if(back1Y == 800){
+                back1Y=-800;
             }
-            if(back2Y == 800 ){
-                back2Y = -800;
+            //웹브라우저야 만일 back2Y 가 800 이면 back2Y 를 -800 으로 바꿔줘
+            if(back2Y == 800){
+                back2Y=-800;
             }
         }
 
         function dragonAni(){
-            if(count%20==0){
+            if( count%20 == 0){
+                //드레곤 인덱스를 1 증가 시키고
                 dragonIndex++;
-              
-                if (dragonIndex==3){
+
+                if(dragonIndex==3){
                     dragonIndex=0;
                 }
-
             }
         }
 
         function makeMissile(){
-            if(count%10==0){
-                //드래곤의 현재 위치에서 미사일 객체를 만들어서 배열에 저장하기
-                let mObj = {x:unitX, y:unitY, isDelete : false};
+            if( count%10 == 0 && !isFallingDragon){
+                //드레곤의 현재 위치에서 미사일 객체를 만들어서 배열에 저장하기
+                let mObj = {x:unitX, y:unitY, isDelete:false};
+                
                 missList.push(mObj);
+
+                //laserSound.currentTime=0;
+                //laserSound.play();
             }
-
-            // 레이저 소리 나오게 ( 완전 시끄러움 주의 .. )
-            // laserSound.currentTime=0;
-            // laserSound.play();
-
         }
         function moveMissile(){
             //반복문 돌면서 미사일 움직이게 하기
-            for(let i=0;i<missList.length;i++){
-                let tmp = missList[i];
-                //객체에 저장된 y값을 10 씩 감소 시키기
+            for(let i=0;i<missList.length; i++){
+                let tmp=missList[i];
+                //객체에 저장된 y 값을 10 씩 감소 시키기 
                 tmp.y -= 10;
                 //만일 미사일이 화면위로 벗어 났다면
                 if(tmp.y <= -25){
-                    //해당 미사일을 나중에 제거 할 수 있도록 표시해 둔다.
-                    tmp.isDelete = true;
-
+                    //해당 미사일을 나중에 제거 할수 있도록 표시해 둔다. 
+                    tmp.isDelete=true;
                 }
             }
         }
-        function checkMisile(){
-            //반복문 돌면서 제거할 미사일 객체는 배열에서 제거하기
-            for(let i=0;i<missList.length;i++){
-                //i번째 미사일 객체의 참조값을 얻어와서
-                let tmp = missList[i];
+        function checkMissile(){
+            //반복문 돌면서 제거할 미사일객체는 배열에서 제거하기
+            for(let i=0;i<missList.length; i++){
+                            //i번째 미사일 객체의 참조값을 얻어와서 
+                let tmp=missList[i];
                 //만일 제거해야되는 미사일 객체라면
                 if(tmp.isDelete){
-                    //미사일 배열에서 i번째 방에서부터 1개 삭제하기
-                    missList.splice(i,1);
+                    //미사일 배열에서 i 번째 방에서 부터 1개 삭제하기 
+                    missList.splice(i, 1);
                 }
             }
+
         }
 
-        //mousemove 이벤트가 일어났을때 mouse의 x좌표를 unitX에 반영해 보세요
-        canvas.addEventListener("mousemove",function(e){
-            unitX = e.offsetX;
+        //mousemove 이벤트가 일어났을때 mouse 의 x 좌표를 unitX 에 반영해 보세요
+        canvas.addEventListener("mousemove", function(e){
+            unitX=e.offsetX;
         });
 
         //키 이벤트가 필요 하다면  
@@ -173,6 +370,10 @@
             console.log(e.keyCode);
         });
 
+        //게임시작 버튼을 누르면 게임이 시작되도록 한다. 
+        document.querySelector("#startBtn").addEventListener("click", function(){
+            isStarted=true;
+        });
     </script>
 </body>
 </html>
