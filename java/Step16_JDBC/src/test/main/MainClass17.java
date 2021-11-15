@@ -34,38 +34,38 @@ public class MainClass17 {
 		}
 		
 		
-//		CompanyDto dto2 = new CompanyDto();
-//		dto2.setEmpno(1);
-//		dto2.setEname("최00");
-//		dto2.setJob("전산");
-//		
-//		boolean isSuccess2 = dao.update(dto2);
-//		if(isSuccess2) {
-//			System.out.println("갱신 성공");
-//		}else {
-//			System.out.println("갱신 실패");
-//		}
+		CompanyDto dto2 = new CompanyDto();
+		dto2.setEmpno(1);
+		dto2.setEname("최00");
+		dto2.setJob("전산");
+		
+		boolean isSuccess2 = dao.update(dto2);
+		if(isSuccess2) {
+			System.out.println("갱신 성공");
+		}else {
+			System.out.println("갱신 실패");
+		}
 		
 		
 		
-//		CompanyDto dto3 = new CompanyDto();
-//		dto3.setEmpno(4);
-//		
-//		boolean isSuccess3 = dao.delete(dto3);
-//		if(isSuccess3) {
-//			System.out.println("삭제 성공");
-//		}else {
-//			System.out.println("삭제 실패");
-//		}
-//		
+		CompanyDto dto3 = new CompanyDto();
+		dto3.setEmpno(4);
 		
-//		
-//		CompanyDto dto4  = dao.getData(1);
-//		if(dto4!=null) {
-//			System.out.println(dto4.getEmpno() + " | " + dto4.getEname() + " | " +dto4.getJob() + " | " +dto4.getHiredate());
-//		}else {
-//			System.out.println("조회 내역이 없습니다.");
-//		}
+		boolean isSuccess3 = dao.delete(dto3);
+		if(isSuccess3) {
+			System.out.println("삭제 성공");
+		}else {
+			System.out.println("삭제 실패");
+		}
+		
+		
+		
+		CompanyDto dto4  = dao.getData(1);
+		if(dto4!=null) {
+			System.out.println(dto4.getEmpno() + " | " + dto4.getEname() + " | " +dto4.getJob() + " | " +dto4.getHiredate());
+		}else {
+			System.out.println("조회 내역이 없습니다.");
+		}
 		
 		
 		
