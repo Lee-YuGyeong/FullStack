@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>Step01_Servlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- 
+  	HelloServlet 이라는 이름의 서블릿이 어디에 있는지 tomcat 서버에 알려주기
+  	서블릿의 이름은 우리 마음대로 지을 수 있다.
+  -->
+  <servlet>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<servlet-class>test.servlet.HelloServlet</servlet-class>
+  </servlet>
+  <!-- 
+  	HelloServlet 이라는 이름의 서블릿이 어떤 경로 요청이 들어왔을때 동작하기 할 것인지 설정하기
+  -->
+  <servlet-mapping>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ByeServlet</servlet-name>
+  	<servlet-class>test.servlet.ByeServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ByeServlet</servlet-name>
+  	<url-pattern>/bye</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
