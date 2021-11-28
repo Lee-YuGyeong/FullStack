@@ -13,11 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SendServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//msg라는 파라미터 명으로 전송된 문자열 읽어오기
+		
 		String msg = req.getParameter("msg");
-		
-		System.out.println("클라이언트가 전송한 문자열 : " +msg);
-		
 		
 		//응답 인코딩 설정
 		resp.setCharacterEncoding("utf-8");
@@ -33,7 +30,7 @@ public class SendServlet extends HttpServlet {
 		pw.println("<title></title>");
 		pw.println("</head>");
 		pw.println("<body>");
-		pw.println("ok~");
+		pw.println(msg + "가 전송되었습니다.");
 		pw.println("</body>");
 		pw.println("</html>");
 		pw.close();

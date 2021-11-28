@@ -19,7 +19,7 @@
   	<servlet-class>test.servlet.HelloServlet</servlet-class>
   </servlet>
   <!-- 
-  	HelloServlet 이라는 이름의 서블릿이 어떤 경로 요청이 들어왔을때 동작하기 할 것인지 설정하기
+  	HelloServlet 이라는 이름의 서블릿이 어떤 경로 요청이 들어왔을때 동작하게 할 것인지 설정하기
   -->
   <servlet-mapping>
   	<servlet-name>HelloServlet</servlet-name>

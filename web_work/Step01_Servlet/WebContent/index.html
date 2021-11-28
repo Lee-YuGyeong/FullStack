@@ -2,40 +2,66 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>index.html</title>
 </head>
 <body>
-	<h1>인덱스 페이지입니다.</h1>
-	<ul>
-		<li><a href="hello">hello 요청</a></li>
-		<li><a href="/Step01_Servlet/hello">hello 요청</a></li>
-		<li><a href="bye">bye 요청</a></li>
-		<li><a href="/Step01_Servlet/bye">bye 요청</a></li>
-		<li><a href="time">현재시간 요청</a></li>
-		<li><a href="/Step01_Servlet/time">현재시간 요청</a></li>
-		<li><a href="sub/fortune">오늘의 운세보기</a></li>
-		<li><a href="/Step01_Servlet/sub/fortune">오늘의 운세보기</a></li>
-		<li><a href="/Step01_Servlet/send?msg=hello">Get 방식 전송 테스트</a></li>
-	</ul>
-	
-	<form action="/Step01_Servlet/send" method="get">
-		<input type="text" name="msg" placeholder="메세지 입력.." />
-		<button type="submit">전송</button>
-		<button type="reset">취소</button>
-	</form>
-	
-	<br />
-	
-	<!-- 
-		1. 아래의 폼을 제출했을때 404를 발생시키지 않도록 서블릿을 만들어보세요.
-		2. 서블릿의 service() 메소드 안에서 폼 전송되는 파라미터를(이름, 주소) 추출해서 콘솔창에 출력해보세여.
-		3. 간단한 html응답도 해보세요.
-	-->
-	<form action="/Step01_Servlet/member/insert" method="get">
-      	<input type="text" name="name" placeholder="이름..."/>
-      	<input type="text" name="addr" placeholder="주소..."/>
-    	<button type="submit">추가</button>
-   	</form>
-	
+   <h1>인덱스 페이지입니다.</h1>
+   <ul>
+      <li><a href="hello">hello 요청</a></li>
+      <li><a href="/Step01_Servlet/hello">hello 요청</a></li>
+      
+      <!-- 아래의 링크를 눌렀을때 "good bye client!" 가 웹브라우저에 출력되도록 프로그래밍해 보세요. -->
+      <li><a href="bye">bye 요청</a></li>
+      <li><a href="/Step01_Servlet/bye">bye 요청</a></li>
+      
+      <li><a href="time">현재 시간 보기</a></li>
+      <li><a href="/Step01_Servlet/time">현재 시간 보기</a></li>
+      
+      <li><a href="sub/fortune">오늘의 운세보기</a></li>
+      <li><a href="/Step01_Servlet/sub/fortune">오늘의 운세보기</a></li>
+	  <li><a href="/Step01_Servlet/send?msg=hello">GET 방식 전송 테스트</a></li>
+   </ul>
+
+   <h3>get 방식 폼 전송 예제</h3>
+   <form action="/Step01_Servlet/send" method="get">
+      <input type="text" name="msg" placeholder="메세지 입력..."/>
+      <button type="submit">전송</button>
+      <button type="reset">취소</button>
+   </form>
+   <br />
+
+   <!-- 
+      1. 아래의 폼을 제출했을때 404 를 발생시키지 않도록 서블릿을 만들어 보세요.
+      2. 서블릿의 service() 메소드 안에서 폼 전송되는 파라미터를(이름,주소) 추출해서 콘솔창에 출력해 보세요.
+      3. 간단한 html 응답도 해 보세요. 
+    -->
+
+   <form action="/Step01_Servlet/member/insert" method="get">
+      <input type="text" name="name" placeholder="이름..."/>
+      <input type="text" name="addr" placeholder="주소..."/>
+      <button type="submit">추가</button>
+   </form>
+   
+   <h3>post 방식 폼 전송 예제</h3>
+   <form action="/Step01_Servlet/send.jsp" method="post">
+      <input type="text" name="msg" placeholder="메세지 입력..."/>
+      <button type="submit">전송</button>
+   </form>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
