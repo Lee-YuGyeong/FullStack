@@ -9,7 +9,7 @@
 </head>
 <body>
 <%
-	//request 영역 (scope)에 "dto"라는 키값으로 저장된 MemberDto 객체의 참조값 얻어오기
+	//request 영역(scope)에 "dto" 라는 키값으로 저장된 MemberDto 객체의 참조값 얻어오기
 	MemberDto dto=(MemberDto)request.getAttribute("dto");
 %>
 <p>번호 : <strong><%=dto.getNum() %></strong></p>
@@ -17,3 +17,10 @@
 <p>주소 : <strong><%=dto.getAddr() %></strong></p>
 </body>
 </html>
+
+
+
+
+
+
+
