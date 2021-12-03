@@ -25,7 +25,7 @@
 	<script>
 		$("#hideBtn").on("click",function(){
 			//$(".box").hide(1000);
-			//$(".box").fadeOut(1000);
+			//$(".box").fadeOut(1000); 
 			$(".box").slideUp(1000);
 		});
 		
