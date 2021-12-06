@@ -47,5 +47,46 @@
 		</c:forEach>
 	</ul>
 
+	<h3>친구 목록입니다. 인덱스 표시</h3>
+	<ul>
+		<c:forEach var="tmp" items="${names }" varStatus="status">
+			<li>
+				${tmp }
+				${status.index }
+			</li>
+		</c:forEach>
+	</ul>   
+
+	<h3>친구 목록입니다. 순서 표시</h3>
+	<ul>
+		<c:forEach var="tmp" items="${names }" varStatus="status">
+			<li>
+				${tmp }
+				${status.count }
+			</li>
+		</c:forEach>
+	</ul>
+	
+	<h3>친구 목록입니다. 첫번째 아이템 여부</h3>
+	<ul>
+		<c:forEach var="tmp" items="${names }" varStatus="status">
+			<li>
+				${tmp }
+				첫번째 아이템 여부 : ${status.first }
+			</li>
+		</c:forEach>
+	</ul>  
+	
+	<h3>친구 목록입니다. 마지막번째 아이템인지 여부</h3>
+	<ul>
+		<c:forEach var="tmp" items="${names }" varStatus="status">
+			<li>
+				${tmp }
+				마지막번째 아이템인지 여부 : ${status.last }
+			</li>
+		</c:forEach>
+	</ul> 
+	
+	
 </body>
 </html>
