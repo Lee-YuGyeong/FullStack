@@ -10,7 +10,7 @@
 	list.add(new MemberDto(1,"김구라","노량진"));
 	list.add(new MemberDto(2,"해골","행신동"));
 	list.add(new MemberDto(3,"원숭이","상도동"));
-	
+	//응답하는데 필요한 데이터(Medel)을 request영역에 담는다
 	request.setAttribute("list", list);
 	
 %>

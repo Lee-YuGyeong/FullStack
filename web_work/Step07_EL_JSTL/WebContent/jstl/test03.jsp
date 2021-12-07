@@ -5,7 +5,7 @@
 	//DB에 저장된 문자열이라고 가정하자
 	String hobby="piano/game/reading";
 	String food="ramen,hamburger,pizza";
-	
+	//응답에 필요한 데이터(Model)을 request영역에 담는다.
 	request.setAttribute("hobby", hobby);
 	request.setAttribute("food", food);
 	
