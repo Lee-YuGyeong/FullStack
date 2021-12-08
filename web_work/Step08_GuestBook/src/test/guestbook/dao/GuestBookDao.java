@@ -22,6 +22,45 @@ public class GuestBookDao {
 		}
 		return dao;
 	}
+	
+	//전체 글의 개수를 리턴하는 메소드
+	public int getCount() {
+		//전체 ROW의 개수를 담을 지역변수
+		int count=0;
+		//필요한 객체를 담을 지역 변수 미리 만들기
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문의 뼈대 미리 준비하기
+			String sql = "SELECT MAX(ROWNUM) AS max_rownum FROM guest_book";
+			//PreparedStatement 객체의 참조값 얻어오기
+			pstmt = conn.prepareStatement(sql);
+			//? 에 필요한값 바인딩하기 
+
+			//select 문 수행하고 결과를 ResultSet 으로 받아오기 
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count=rs.getInt("max_rownum");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+			}
+		}
+		return count;
+	}
+	
 	//새글을 저장하는 메소드
 	public boolean insert(GuestBookDto dto) {
 		//필요한 객체를 담을 지역 변수 미리 만들기
@@ -61,8 +100,8 @@ public class GuestBookDao {
 			return false;
 		}
 	}
-	//글 목록을 리턴하는 메소드
-	public List<GuestBookDto> getList(){
+	//키워드에 맞는 글 목록을 리턴하는 메소드
+	public List<GuestBookDto> getListKeyword(String keyword){
 		//글 목록을 담을 ArrayList 객체 생성
 		List<GuestBookDto> list=new ArrayList<>();
 		//필요한 객체를 담을 지역 변수 미리 만들기
@@ -74,24 +113,83 @@ public class GuestBookDao {
 			//Connection 객체의 참조값 얻어오기 
 			conn = new DbcpBean().getConn();
 			//실행할 sql 문의 뼈대 미리 준비하기
-			String sql = "SELECT num,writer,title,content,pwd,regdate"
-					+ " FROM guest_book"
-					+ " ORDER BY num DESC";
+			String sql = "SELECT num,writer,title,content,pwd,regdate" + 
+					" FROM guest_book" + 
+					" WHERE writer LIKE '%' || ? || '%'" + 
+					" OR title LIKE '%'|| ? ||'%'" + 
+					" OR content LIKE '%'|| ? ||'%'" + 
+					" ORDER BY num DESC";
 			//PreparedStatement 객체의 참조값 얻어오기
 			pstmt = conn.prepareStatement(sql);
 			//? 에 필요한값 바인딩하기 
-
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setString(3, keyword);
 			//select 문 수행하고 결과를 ResultSet 으로 받아오기 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				GuestBookDto dto=new GuestBookDto();
-				dto.setNum(rs.getInt("num"));
-				dto.setWriter(rs.getString("writer"));
-				dto.setTitle(rs.getString("title"));
-				dto.setContent(rs.getString("content"));
-				dto.setPwd(rs.getString("pwd"));
-				dto.setRegdate(rs.getString("regdate"));
-				list.add(dto);
+				GuestBookDto tmp=new GuestBookDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setContent(rs.getString("content"));
+				tmp.setPwd(rs.getString("pwd"));
+				tmp.setRegdate(rs.getString("regdate"));
+				list.add(tmp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+			}
+		}
+		return list;
+	}
+	
+	//글 목록을 리턴하는 메소드
+	public List<GuestBookDto> getList(GuestBookDto dto){
+		//글 목록을 담을 ArrayList 객체 생성
+		List<GuestBookDto> list=new ArrayList<>();
+		//필요한 객체를 담을 지역 변수 미리 만들기
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문의 뼈대 미리 준비하기
+			String sql = "SELECT *" + 
+					" FROM" + 
+					"	(SELECT result1.*,ROWNUM as sunbun" + 
+					"	FROM" + 
+					"		(SELECT num,writer,title,content,pwd,regdate" + 
+					"		FROM guest_book" + 
+					"		ORDER BY num DESC) result1 )" + 
+					" WHERE sunbun BETWEEN ? AND ?";
+			//PreparedStatement 객체의 참조값 얻어오기
+			pstmt = conn.prepareStatement(sql);
+			//? 에 필요한값 바인딩하기 
+			pstmt.setInt(1, dto.getStartRowNum());
+			pstmt.setInt(2, dto.getEndRowNum());
+			//select 문 수행하고 결과를 ResultSet 으로 받아오기 
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				GuestBookDto tmp=new GuestBookDto();
+				tmp.setNum(rs.getInt("num"));
+				tmp.setWriter(rs.getString("writer"));
+				tmp.setTitle(rs.getString("title"));
+				tmp.setContent(rs.getString("content"));
+				tmp.setPwd(rs.getString("pwd"));
+				tmp.setRegdate(rs.getString("regdate"));
+				list.add(tmp);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

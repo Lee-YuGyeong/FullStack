@@ -7,11 +7,15 @@ public class GuestBookDto {
 	private String content;	//내용
 	private String pwd;		//비밀번호
 	private String regdate;	//등록일
+	//페이징 처리를 위한 필드
+	private int startRowNum;
+	private int endRowNum;
 	
 	//디폴트 생성자
 	public GuestBookDto() {}
 
-	public GuestBookDto(int num, String writer, String title, String content, String pwd, String regdate) {
+	public GuestBookDto(int num, String writer, String title, String content, String pwd, String regdate,
+			int startRowNum, int endRowNum) {
 		super();
 		this.num = num;
 		this.writer = writer;
@@ -19,6 +23,8 @@ public class GuestBookDto {
 		this.content = content;
 		this.pwd = pwd;
 		this.regdate = regdate;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
 	}
 
 	public int getNum() {
@@ -68,8 +74,22 @@ public class GuestBookDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	
-	
-	
-	
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+
+
 }
