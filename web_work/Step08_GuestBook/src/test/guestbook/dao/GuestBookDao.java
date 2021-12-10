@@ -23,6 +23,46 @@ public class GuestBookDao {
 		return dao;
 	}
 	
+	//글 정보를 수정하는 메소드
+	public boolean update(GuestBookDto dto) {
+		//필요한 객체를 담을 지역 변수 미리 만들기
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int flag = 0;
+		try {
+			//Connection 객체의 참조값 얻어오기 
+			conn = new DbcpBean().getConn();
+			//실행할 sql 문의 뼈대 미리 준비하기
+			String sql = "UPDATE guest_book "
+					+ " SET writer=?, title=?, content=?"
+					+ " WHERE num=?";
+			//PreparedStatement 객체의 참조값 얻어오기
+			pstmt = conn.prepareStatement(sql);
+			//? 에 필요한값 바인딩하기 
+			pstmt.setString(1, dto.getWriter());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setInt(4, dto.getNum());
+			//sql 문 실행하기 (INSERT, UPDATE, DELETE)
+			flag = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+			}
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//전체 글의 개수를 리턴하는 메소드
 	public int getCount() {
 		//전체 ROW의 개수를 담을 지역변수

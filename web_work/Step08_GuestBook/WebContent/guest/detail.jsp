@@ -51,6 +51,12 @@
 		</tr>
 	</table>
 	<p>${fn:replace(dto.content,newLine,'<br>' )}</p>
+
+	<form action="updateform.jsp" method="get">
+		<input type="hidden" name="num" value="${dto.num }" />
+		<input type="password" name="pwd" placeholder="비밀번호..." />
+		<button type="submit">수정</button>
+	</form>
 	<%--
 		글을 삭제하기 위해서는 글번호가 필요하게떄문에 글번호를 input type="hidden" 으로
 		form 전송될때 같이 전송되도록 한다.
