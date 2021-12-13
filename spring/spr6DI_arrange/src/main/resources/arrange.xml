@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">   
+
+	
+	<bean id="impl" name="star, good" class="pack.MessageImpl" scope="singleton"> <!-- singleton, prototype, session, request -->
+		<!-- Constructor injection -->
+		<constructor-arg index="1">
+			<value>안녕하세요</value>
+		</constructor-arg>
+		
+		<constructor-arg type="java.lang.String" index="0">
+			<value>반가워요</value>
+		</constructor-arg>
+		
+		<constructor-arg type="int" value="2000" index="2"/>
+		
+		<constructor-arg type="other.MyInfo" ref="myInfo" index="3"/>
+	
+		<!-- Setter injection -->
+		<property name="spec">
+			<value>정보처리 자격증</value>
+		</property>
+	
+		<property name="fileInter">
+			<ref bean="outFileInterImpl"></ref>
+		</property>
+	</bean>
+	
+	<bean id="myInfo" class="other.MyInfo" ></bean>
+	<bean id="outFileInterImpl" class="other2.OutFileInterImpl">
+		<property name="filePath" value="c:/mywork/happy.txt"></property>
+	</bean>
+	
+
+	
+	
+</beans>
