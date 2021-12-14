@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+
+	<select id="selectDataByBuser" parameterType="ArrayList"
+		resultType="pack.JikwonDto">
+		select jikwon_no,jikwon_name,jikwon_jik from jikwon where buser_num in
+		<foreach collection='array' index='index' item='item' open='('
+			close=')' separator=','>
+			#{item}
+		</foreach>
+	</select>
+
+</mapper>
