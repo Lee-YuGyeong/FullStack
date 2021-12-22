@@ -31,8 +31,8 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter 
 
 	@Override
 	public BoardDto getDetail(String num) {
-		// TODO Auto-generated method stub
-		return null;
+		// 상세보기, 글 수정, 댓글에서 사용
+		return getSqlSession().selectOne("selectOne",num);	
 	}
 	
 	@Override
@@ -45,14 +45,23 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter 
 	
 	@Override
 	public boolean update(BoardBean bean) {
-		// 
-		return false;
+		// 수정 작업
+		int re = getSqlSession().update("updateData",bean);
+		if(re > 0) return true;
+		else return false;
 	}
 	
 	@Override
 	public boolean delete(String num) {
-		// TODO Auto-generated method stub
-		return false;
+		// 삭제 작업
+		try {
+			int re = getSqlSession().update("deleteData",num);
+			if(re > 0) return true;
+			else return false;
+		} catch (Exception e) {
+			return false;
+		}
+		
 	}
 	
 	@Override
@@ -68,5 +77,41 @@ public class BoardDaoImpl extends SqlSessionDaoSupport implements BoardDaoInter 
 	public int totalCnt() {
 		// paging 처리를 위해 전체 레코드 건수 얻기
 		return getSqlSession().selectOne("totalCnt");
+	}
+	
+	@Override
+	public boolean updateReadcnt(String num) {
+		// 상세보기 할 때 조회수 증가용
+		int re = getSqlSession().update("updateReadcnt",num);
+		if (re>0) return true;
+		else return false;
+	}
+	
+	@Override
+	public String selectPass(String num) {
+		// 수정시 비밀번호 확인
+		return getSqlSession().selectOne("selectPass",num);
+	}
+	
+	@Override
+	public boolean updateOnum(BoardBean bean) {
+		// 댓글에서 onum 갱신
+		int re = getSqlSession().update("updateOnum",bean);
+		if (re>0) return true;
+		else return false;
+	}
+	
+	@Override
+	public boolean insertReply(BoardBean bean) {
+		// 댓글 등록
+		try {
+			int re = getSqlSession().insert("insertReData",bean);
+			if (re>0) return true;
+			else return false;			
+		}catch (Exception e) {
+			System.out.println("insertReply err : "+e);
+			return false;
+		}
+
 	}
 }

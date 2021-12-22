@@ -15,5 +15,9 @@ public interface BoardDaoInter {
 	
 	int currentMaxnum();
 	int totalCnt();
+	boolean updateReadcnt(String num);
+	String selectPass(String num);
 	
+	boolean updateOnum(BoardBean bean);
+	boolean insertReply(BoardBean bean);
 }

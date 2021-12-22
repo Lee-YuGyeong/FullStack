@@ -11,8 +11,8 @@
 <body>
 	<table>
 		<tr>
-			<a href="list?page=1">최근목록</a>]&nbsp; [
-			<a href="insert">새글 작성</a>]
+			<a href="list?page=1">최근목록</a>]&nbsp; 
+			[<a href="insert">새글 작성</a>]
 
 		</tr>
 	</table>
@@ -25,9 +25,15 @@
 			<th>조회</th>
 		</tr>
 		<c:forEach var="tmp" items="${data }">
+			<!-- 댓글 들여쓰기 준비 -->
+			<c:set var="tab" value=""/>
+			<c:forEach var="n" begin="1" end="${tmp.nested }">
+				<c:set var="tab" value="${tab }&nbsp;&nbsp;"></c:set>
+			</c:forEach>
 			<tr>
 				<td>${tmp.num }</td>
-				<td><a href="detail?num=${tmp.num }&page=${page}">${tmp.title }</a>
+				<td> 
+					${tab }<a href="detail?num=${tmp.num }&page=${page}">${tmp.title }</a>
 				</td>
 				<td>${tmp.name }</td>
 				<td>${tmp.bdate }</td>

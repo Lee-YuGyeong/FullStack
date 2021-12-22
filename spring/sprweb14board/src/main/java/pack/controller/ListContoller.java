@@ -21,7 +21,7 @@ public class ListContoller {
 	private BoardDaoInter inter;
 
 	private int tot; // 전체 레코드 수
-	private int plist = 5; // 한 페이지당 출력 행 수
+	private int plist = 10; // 한 페이지당 출력 행 수
 	private int pageSu; // 전체 페이지 수
 
 	public ArrayList<BoardDto> getListData(ArrayList<BoardDto> list, int page) {	//12, 1

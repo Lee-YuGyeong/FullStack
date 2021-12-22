@@ -53,7 +53,7 @@
          <tr>
             <td>글내용</td>
             <td>
-               <textarea name="cont" cols="50" rows="5" style="width:99%"></textarea>
+               <textarea name="cont" rows="5" style="width:99%"></textarea>
             </td>
          </tr>
          <tr>
