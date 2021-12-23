@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev">
+	<select id="buserList" resultType="bdto">
+		select buser_no, buser_name, buser_tel from buser order by buser_no asc 
+	</select>
+
+	<select id="jikwonList" parameterType="string" resultType="jdto" >
+		select jikwon_no, jikwon_name, jikwon_jik from jikwon
+		inner join buser on buser.buser_no = jikwon.buser_num
+		where buser_no=#{buser_no} order by buser_no asc
+	</select>
+</mapper>
