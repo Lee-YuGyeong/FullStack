@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>상품 자료 출력</h2>
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><span th:text="${dto.id}"></span></td>
+		</tr>
+		<tr>
+			<td>상품명</td>
+			<td><span th:text="${dto.name}"></span></td>
+		</tr>
+		<tr>
+			<td>가 격</td>
+			<td><span th:text="${dto.price}"></span></td>
+		</tr>
+		<tr>
+			<td>등록일</td>
+			<td><span th:text="${dto.regTime}"></span></td>
+		</tr>
+	</table>
+</body>
+</html>
