@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	자료 입력<p/>
+	<form action="/data/insert" method="post">{% csrf_token%} <!-- CSRF (Cross-site request forgery) 해킹 방지 -->
+		메세지 : <input type="text" name="msg">
+		<input type="submit" value="확인">
+	</form>
+</body>
+</html>
