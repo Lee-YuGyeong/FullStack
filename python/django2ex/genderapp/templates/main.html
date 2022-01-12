@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="show" method="post">{% csrf_token%}
+		<p>성별 입력</p>
+		<input type="radio" name="gender" id="male" value="male">남
+		<input type="radio" name="gender" id="female" value="female">여
+		<input type="submit"></input>
+	</form>
+
+</body>
+</html>
