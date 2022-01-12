@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	window.onload = function(){
+		document.querySelector("#btnok").onclick = function(){
+			//뭔가를 하다가
+			frm.submit();
+		}
+	}
+</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>
+				<img src="/static/images/pic2.jpg" style="width:200px"/>
+			</td>
+			<td>
+				<pre>
+옵토마 EH1030 정품
+상품 상세정보제조사옵토마|등록일2013.05.01
+분류:DLP프로젝터, 용도:홈시네마용, 해상도:FHD(1920x1080), 
+밝기(안시):밝기(안시):3800안시, 명암비:명암비:15,000:1, 
+소음:소음:26dB, 무게:무게:2.9kg, 주요기능:렌즈시프트, 내장스피커
+가격:125만원
+할인가:110만원
+				</pre>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: center">
+				<form action="cart" name="frm" method="post">{%csrf_token%}
+					<input type="hidden" name="productname" value="옵토마 EH1030"/>
+					<input type="hidden" name="price" value="1000000"/>
+					<input type="button" id="btnok" value="장바구니에 물건 담기"/>
+					<input type="button" value="홈페이지로 이동" onclick="history.back()"/>
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
