@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	** 방명록 글 보기 **</p>
+	<a href="/guest/insert">자료추가</a>
+	<table border="1" style="width:80%">
+		<tr >
+			<th>아이디</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>등록일</th>
+		</tr>
+		{% if gdatas %}
+			{% for g in gdatas %}
+				<tr>
+					<td>{{g.id}}</td>
+					<td>{{g.title}}</td>
+					<td>{{g.content}}</td>
+					<td>{{g.regdate}}</td>
+				</tr>
+			{% endfor %}
+		{% else %}
+			<tr>
+				<td colspan="4">작성된 글이 존재하지 않습니다.</td>
+			</tr>
+		{% endif %}
+	</table>
+	<br />
+	<a href="/">메인으로</a>
+</body>
+</html>
