@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+	<h2>* {{data_one.id}}번 게시글 *</h2>
+	<table class="table">
+		<tr>
+			<td style="text-align: right; width:95%">
+				<a href="/board/update?id={{data_one.id}}">수정</a>
+				<a href="/board/delete?id={{data_one.id}}">삭제</a>
+				<a href="/board/list?page={{page}}">목록</a>
+			</td>
+		</tr>
+		
+	</table>
+
+	<table class="table">
+		<tr style="width:95%; background-color: lightgray;">
+			<td>
+				작성자 : <a href="mailto:{{data_one.mail}}">{{data_one.name}}</a>
+				(ip : {{data_one.bip}})
+			</td>
+			<td>작성일 : {{data_one.bdate}}</td>
+			<td>조회수 : {{data_one.readcnt}}</td>
+		</tr>
+		<tr>
+			<td colspan="3">제 목 : {{data_one.title}}</td>
+		</tr>
+		<tr>
+			<td colspan="3"><textarea rows="5" style="width:100%" readonly>{{data_one.cont}}</textarea></td>
+		</tr>
+	</table>
+
+</body>
+</html>
