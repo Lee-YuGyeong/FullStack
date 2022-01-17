@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function func(arg){
+		//alert(arg);
+		let result = confirm("정말 삭제할까요?");
+		if(result){
+			document.getElementById(arg).submit()
+		}
+	}
+</script>
+</head>
+<body>
+	* 상품 정보 *</p>
+	
+	<a href="/sangpum/insert">상품 추가</a>
+	
+	
+	<table border="1">
+		<tr>
+			<th>코드</th>
+			<th>품명</th>
+			<th>수량</th>
+			<th>단가</th>
+			<th>기타</th>
+		</tr>
+		{% if sangpums %}
+			{% for s in sangpums %}
+			<!-- <tr>
+					<td>{{s.0}}</td>
+					<td>{{s.1}}</td>
+					<td>{{s.2}}</td>
+					<td>{{s.3}}</td>
+					<td>수정/삭제</td>
+				</tr> -->
+				<tr>
+					<td>{{s.code}}</td>
+					<td>{{s.sang}}</td>
+					<td>{{s.su}}</td>
+					<td>{{s.dan}}</td>
+					<td>
+						<a href="/sangpum/update?code={{s.code}}">수정</a> /
+						<!-- 
+						<a href="/sangpum/delete?code={{s.code}}">삭제</a>
+						 -->
+						<form action="/sangpum/delete" name="frm" method="get" id="{{s.code}}"
+							style="display:inline;">
+							<input type="hidden" name="code" value="{{s.code}}"/>
+							<a href="javascript:void(0); onclick=func({{s.code}})">삭제</a>
+						</form><!-- 정말 삭제할까요? 알림 띄울려고 form안에 a태그 넣음 -->
+					</td>
+				</tr>
+			{% endfor %}
+		{% else %}
+			<tr>
+				<td colspan="5">자료가 없어요</td>
+			</tr>
+		{% endif %}
+	</table>
+</body>
+</html>

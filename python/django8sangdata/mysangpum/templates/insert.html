@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+   window.onload = function(){
+      document.querySelector("#btnSubmit").onclick = function(){
+         chkData();
+      }
+      
+   }
+   function chkData(){
+      //alert("a");
+      if(frm.code.value===""){
+    	 alert("코드를 입력하시오");
+         frm.code.focus();
+         return;
+      }
+      //...
+      frm.submit();
+   }
+</script>
+</body>
+<h2>상품 입력</h2>
+<form action="/sangpum/insertok" method="post" name="frm">{% csrf_token %}
+   <table>
+      <tr>
+         <td>코드</td>
+         <td><input type="text" name="code"/><span style="color:red">{{msg}}</span></td>
+      </tr>
+      <tr>
+         <td>상품명</td>
+         <td><input type="text" name="sang"/></td>
+      </tr>
+      <tr>
+         <td>수량</td>
+         <td><input type="text" name="su"/></td>
+      </tr>
+      <tr>
+         <td>단가</td>
+         <td><input type="text" name="dan"/></td>
+      </tr>
+      <tr>
+         <td colspan="2">
+            <input type="button" value="저장" id="btnSubmit"/>
+         </td>
+      </tr>
+   </table>
+</form>
+</html>
