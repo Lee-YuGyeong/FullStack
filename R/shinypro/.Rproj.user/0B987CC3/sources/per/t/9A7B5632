@@ -1,0 +1,26 @@
+{
+    "id": "9A7B5632",
+    "path": "C:/mywork/rsou/shinypro/app.R",
+    "project_path": "app.R",
+    "type": "r_source",
+    "hash": "3253950065",
+    "contents": "",
+    "dirty": false,
+    "created": 1642725811655.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "24,35",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1642726056,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1642726056734,
+    "read_only": false,
+    "read_only_alternatives": []
+}
